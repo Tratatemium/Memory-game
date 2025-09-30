@@ -58,7 +58,12 @@
             // Iterate through all elements in the row
             for (let j = 0; j < array[i].length; j++){
                 card = document.createElement('div');
-                card.classList.add('card', i, j);
+                card.classList.add('card', 'row' + i, 'column' + j);
+
+                card.addEventListener('click', () => {
+                    console.log('Card in row '+ ', column ' + 'has been clicked');
+                });
+                
                 row.appendChild(card);
 
                 cardInner = document.createElement('div');
@@ -112,6 +117,8 @@ const originalCards = [
     'Images/17-Eye.png',
     'Images/18-Chain.png',
 ];
+
+//const gameVariants = {6, 8, 10, 12, 14, 15, 18};
 
 let cardsSlised = originalCards.slice(0, 8).concat(originalCards.slice(0, 8));
 let cardsShuffled = shuffle(cardsSlised);
