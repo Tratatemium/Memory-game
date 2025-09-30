@@ -32,6 +32,21 @@
 
 
 
+    function onCardClick(event) {
+
+        // Get the element (card) that has been clicked
+        let card = event.currentTarget;
+
+        // From assingned classes ".row#" ".column#" get position of the clicked card
+        let row =  Number(card.classList[1].charAt(card.classList[1].length - 1));
+        let column = Number(card.classList[2].charAt(card.classList[2].length - 1));
+
+        // Here goes the code to callback the game
+        console.log(playCards[row][column]);
+    }
+
+
+
 
     /**  Function that creates html elements for cards
      *
@@ -60,9 +75,7 @@
                 card = document.createElement('div');
                 card.classList.add('card', 'row' + i, 'column' + j);
 
-                card.addEventListener('click', () => {
-                    console.log('Card in row '+ ', column ' + 'has been clicked');
-                });
+                card.addEventListener('click', onCardClick);
                 
                 row.appendChild(card);
 
@@ -124,13 +137,13 @@ let cardsSlised = originalCards.slice(0, 8).concat(originalCards.slice(0, 8));
 let cardsShuffled = shuffle(cardsSlised);
 console.log(cardsShuffled);
 
-let playcards = [
+let playCards = [
     cardsShuffled.slice(0, 4),
     cardsShuffled.slice(4, 8),
     cardsShuffled.slice(8, 12),
     cardsShuffled.slice(12, 16)
 ]
 
-console.log(playcards);
+console.log(playCards);
 
-createCards(playcards);
+createCards(playCards);
