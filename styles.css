@@ -101,8 +101,7 @@ body::before {
 }
 
 .main{
-  display: flex;
-  flex-direction: column;
+  display: grid;
 }
 
 #card-field {
@@ -110,7 +109,8 @@ body::before {
   flex-direction: column;
   gap: 1em;
 
-  justify-self: center;
+  width: fit-content;
+  margin: auto;
 }
 
 .card-row {
