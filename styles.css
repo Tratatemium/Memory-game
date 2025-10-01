@@ -81,7 +81,6 @@
 }
 
 body {
-
   background-color: #13120c;
   background-image: url('Images/Background-04.png');
 
@@ -102,13 +101,16 @@ body::before {
 }
 
 .main{
-    background-color: black;
+  display: flex;
+  flex-direction: column;
 }
 
 #card-field {
   display: flex;
   flex-direction: column;
   gap: 1em;
+
+  justify-self: center;
 }
 
 .card-row {
