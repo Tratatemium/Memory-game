@@ -87,7 +87,7 @@
                             guessedCounter += 1;
 
                             // Function on-win goes here
-                            if (guessedCounter === differentCards) {
+                            if (guessedCounter === Number(differentCards)) {
                                 console.log('You won!');
                             }
 
@@ -203,20 +203,35 @@ const originalCards = [
     'Images/18-Chain.png',
 ];
 
-//const gameVariants = [6, 8, 10, 12, 14, 15, 18];
+const gameVariants = {
+    6: [3, 4], 
+    8: [4, 4], 
+    10: [4, 5], 
+    12: [4, 6], 
+    14: [4, 7], 
+    15: [5, 6], 
+    18: [6, 6]
+};
 
-let differentCards = 8;
+let differentCards = Object.keys(gameVariants)[0];
 
 let cardsSlised = originalCards.slice(0, differentCards).concat(originalCards.slice(0, differentCards));
-let cardsShuffled = shuffle(cardsSlised);
+let cardsShuffled = shuffle(cardsSlised);   
 console.log(cardsShuffled);
 
-let playCards = [
-    cardsShuffled.slice(0, 4),
-    cardsShuffled.slice(4, 8),
-    cardsShuffled.slice(8, 12),
-    cardsShuffled.slice(12, 16)
-]
+const foldCards = (array, folds) => {
+    let result = [];
+    let sliceStart = 0;
+
+    for (let i = 0; i < folds[0]; i++) {
+        result.push(array.slice(sliceStart, sliceStart + folds[1]));
+        sliceStart += folds[1];
+    }
+
+    return result;
+};
+
+let playCards = foldCards(cardsShuffled, gameVariants[differentCards])
 
 console.log(playCards);
 
