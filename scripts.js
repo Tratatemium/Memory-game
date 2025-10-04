@@ -212,7 +212,8 @@
 
         differentCards = Object.keys(gameVariants)[selectedVariant];
 
-        let cardsSlised = originalCards.slice(0, differentCards).concat(originalCards.slice(0, differentCards));
+        let firstShuffle =  shuffle(originalCards).slice(0, differentCards);
+        let cardsSlised = firstShuffle.concat(firstShuffle);
         let cardsShuffled = shuffle(cardsSlised);
         let playCards = foldCards(cardsShuffled, gameVariants[differentCards]);
         createCards(playCards);
