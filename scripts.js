@@ -71,9 +71,10 @@
     const onWin = (movesMade) => {
 
         const movesParagraph = document.querySelector('.win-dialog.moves')
-        movesParagraph.textContent = `All card pairs were found in ${movesMade} moves!`
+        movesParagraph.textContent = `${movesMade} moves!`
         dialogWindow.showModal();
-
+        // Prevent buttons inside from being focused automatically
+        dialogWindow.querySelectorAll('button').forEach(btn => btn.blur());
     };
 
     
@@ -283,3 +284,7 @@ const playToMenu = document.querySelector('.win-dialog.to-menu');
 window.addEventListener('load', () => {
     setupGame(selectedVariant);
 });
+
+
+dialogWindow.showModal();
+dialogWindow.querySelectorAll('button').forEach(btn => btn.blur());
