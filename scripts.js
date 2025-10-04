@@ -6,6 +6,8 @@
  */ 
 // #region FUNCTIONS
 
+
+
     /**  Fisher–Yates shuffle algorithm for an array
      *
      * @param {array} array
@@ -31,6 +33,11 @@
     };
 
 
+
+    /**  Function that assigns or removes "card-flipped" class from a card-inner
+     *
+     * @param {object} card
+     */
     const flipCard = (card) => {
         if (Array.from(card.children[0].classList).includes('card-flipped')) {
             card.children[0].classList.remove('card-flipped');
@@ -41,44 +48,52 @@
 
 
 
-    let flippedCards = [];
-    let guessedCounter = 0;
-    let flippedTimeout;
+    let flippedCards = [];   // Array to store cards that are flipped at the moment
+    let guessedCounter = 0;  // How many pairs are guessed - used to determine win condition
+    let flippedTimeout;      // Timer for two flipped cards
 
-    const onCardClick = (event) => {
-
-        console.log('click! ' + flippedCards);        
+    /**  Main function for the game. It fires on click on the card
+     *
+     * @param {object} event
+     */
+    const onCardClick = (event) => {      
 
         // Get the element (card) that has been clicked
         let card = event.currentTarget;
 
         switch (flippedCards.length) {
+
+            // If there are no other flipped cards
             case 0:
                 flipCard(card);
                 flippedCards.push(card);
                 break;
+
+            // If there are one other flipped card    
             case 1:
                 if (card !== flippedCards[0]) {
 
                     flipCard(card);
                     flippedCards.push(card);
 
+                    // If two flipped cards have the same image
                     if (flippedCards[0].children[0].children[1].src === flippedCards[1].children[0].children[1].src) {
 
-                        setTimeout(() => {
+                        setTimeout(() => {   // Than both cards disappear
                             flippedCards[0].classList.add('card-invisible');
                             flippedCards[1].classList.add('card-invisible');
                             flippedCards = [];
 
                             guessedCounter += 1;
 
+                            // Function on-win goes here
                             if (guessedCounter === differentCards) {
                                 console.log('You won!');
                             }
 
                         }, 700);                        
 
-                    } else {
+                    } else { // If guessed wrong - they flip back after timeout
                         flippedTimeout = setTimeout(() => {
                             flipCard(flippedCards[0]);
                             flipCard(flippedCards[1]);
@@ -87,8 +102,11 @@
                     }                    
                 }
                 break;
-            case 2:
-                if ((card !== flippedCards[0]) && (card !== flippedCards[1]) && (flippedCards[0].children[0].children[1].src !== flippedCards[1].children[0].children[1].src)) {
+            case 2: // If guessed wrong and other card is clicked - delete timeout and flip back imediatly
+                if (
+                    (card !== flippedCards[0]) && (card !== flippedCards[1]) && 
+                    (flippedCards[0].children[0].children[1].src !== flippedCards[1].children[0].children[1].src)
+                ) {
                     clearTimeout(flippedTimeout);
                     flipCard(flippedCards[0]);
                     flipCard(flippedCards[1]);
@@ -104,13 +122,12 @@
 
 
 
-
     /**  Function that creates html elements for cards
      *
      * @param {Array<string>} array 2-dimentional array containing .src for <img>
      * 
      */
-    function createCards(array) {
+    const createCards = (array) => {
 
         const cardField = document.getElementById('card-field');
         let row;
@@ -129,30 +146,29 @@
 
             // Iterate through all elements in the row
             for (let j = 0; j < array[i].length; j++){
-                card = document.createElement('div');
-                card.classList.add('card', 'row' + i, 'column' + j);
+                card = document.createElement('div');   // Create card 
+                card.classList.add('card');
 
-                card.addEventListener('click', onCardClick);
+                card.addEventListener('click', onCardClick); // Add event listner to card
                 
                 row.appendChild(card);
 
-                cardInner = document.createElement('div');
+                cardInner = document.createElement('div'); // Create card-inner
                 cardInner.classList.add('card-inner');
                 card.appendChild(cardInner);
 
-                cardBack = document.createElement('img');
+                cardBack = document.createElement('img'); // Create card-back
                 cardBack.classList.add('card-back');
                 cardBack.src = 'Images/Back-01.png';
                 cardInner.appendChild(cardBack);
 
-                cardFront = document.createElement('img');
+                cardFront = document.createElement('img'); // Create card-front
                 cardFront.classList.add('card-front');
                 cardFront.src = array[i][j];
                 cardInner.appendChild(cardFront);
             }
-
         }
-    }
+    };
 
 // #endregion FUNCTIONS
 
