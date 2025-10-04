@@ -68,10 +68,15 @@
     };
 
 
+    const onWin = (movesMade) => {
 
-    let flippedCards = [];   // Array to store cards that are flipped at the moment
-    let guessedCounter = 0;  // How many pairs are guessed - used to determine win condition
-    let flippedTimeout;      // Timer for two flipped cards
+        const movesParagraph = document.querySelector('.win-dialog.moves')
+        movesParagraph.textContent = `All card pairs were found in ${movesMade} moves!`
+        dialogWindow.showModal();
+
+    };
+
+    
 
     /**  Main function for the game. It fires on click on the card
      *
@@ -94,6 +99,8 @@
             case 1:
                 if (card !== flippedCards[0]) {
 
+                    movesMade += 1;
+
                     flipCard(card);
                     flippedCards.push(card);
 
@@ -110,6 +117,7 @@
                             // Function on-win goes here
                             if (guessedCounter === Number(differentCards)) {
                                 console.log('You won!');
+                                onWin(movesMade);
                             }
 
                         }, 700);                        
@@ -153,6 +161,8 @@
     const createCards = (array) => {
 
         const cardField = document.getElementById('card-field');
+        cardField.innerHTML = '';   // Reset the playing field
+
         let row;
         let card;
         let cardInner;
@@ -236,10 +246,19 @@ const gameVariants = {
     18: [6, 6]
 };
 
-let differentCards = Object.keys(gameVariants)[0];
+let differentCards;      // How many card pairs are there in game
+let flippedCards = [];   // Array to store cards that are flipped at the moment
+let guessedCounter = 0;  // How many pairs are guessed - used to determine win condition
+let flippedTimeout;      // Timer for two flipped cards
+let movesMade = 0;
 
-let cardsSlised = originalCards.slice(0, differentCards).concat(originalCards.slice(0, differentCards));
-let cardsShuffled = shuffle(cardsSlised);
-let playCards = foldCards(cardsShuffled, gameVariants[differentCards]);
+const dialogWindow = document.querySelector('dialog.win-dialog');
+const playAgainButton = document.querySelector('.win-dialog.play-again');
+playAgainButton.addEventListener('click', () => {});
+const playToMenu = document.querySelector('.win-dialog.to-menu');
 
-createCards(playCards);
+
+
+
+
+
