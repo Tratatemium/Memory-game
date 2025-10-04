@@ -123,6 +123,7 @@ body::before {
   position: relative;
   width: 10em;
   height: 10em;
+  cursor: pointer;
   perspective: 1000px; /* enables 3D flip effect */
 }
 
@@ -148,14 +149,22 @@ body::before {
 }
 
 .card-front {
-  transform: rotateY(0deg);
+  transform: rotateY(180deg);
 }
 
 .card-back {
+  transform: rotateY(0deg);
+}
+
+.card-inner.card-flipped{
   transform: rotateY(180deg);
 }
 
-/* Flip on hover */
+.card.card-invisible{
+  visibility: hidden;
+  pointer-events: none;
+}
+
+
 .card:hover .card-inner {
-  transform: rotateY(180deg);
 }

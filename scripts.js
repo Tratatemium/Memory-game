@@ -11,7 +11,7 @@
      * @param {array} array
      * @returns {array} result
      */  
-    function shuffle(array) {
+    const shuffle = (array) => {
         // Copy array so original is not modified
         let result = array.slice(); 
 
@@ -28,11 +28,28 @@
         }
 
         return result;
-    }
+    };
 
 
 
-    function onCardClick(event) {
+    const flipCard = (card) => {
+        switch (arrayCard.state) {
+            case 'back':
+                card.children[0].classList.add('card-flipped');
+                arrayCard.state = 'front';
+                break;
+            case 'front':
+                card.children[0].classList.remove('card-flipped');
+                arrayCard.state = 'back';
+                break;
+            default:
+                console.log('Mistake in arrayCard.state!')
+        }
+    };
+
+
+
+    const onCardClick = (event) => {
 
         // Get the element (card) that has been clicked
         let card = event.currentTarget;
@@ -41,9 +58,16 @@
         let row =  Number(card.classList[1].charAt(card.classList[1].length - 1));
         let column = Number(card.classList[2].charAt(card.classList[2].length - 1));
 
+        // This is corresponding object in initial array 
+        let arrayCard = playCards[row][column];
+        
         // Here goes the code to callback the game
-        console.log(playCards[row][column].src);
-    }
+        console.log(arrayCard.src);
+        console.log(card.children[0]);
+
+        card.classList.add('card-invisible');
+        arrayCard.state = 'invisible'
+    };
 
 
 
