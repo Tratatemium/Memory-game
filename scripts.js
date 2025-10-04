@@ -34,6 +34,27 @@
 
 
 
+    /**  Function that folds array with cards into 2-D array based on the game layout
+     *
+     * @param {array} array
+     * @param {array} folds
+     * @returns {array}
+     */
+    const foldCards = (array, folds) => {
+        let result = [];
+        let sliceStart = 0;
+
+        for (let i = 0; i < folds[0]; i++) {
+            result.push(array.slice(sliceStart, sliceStart + folds[1]));
+            sliceStart += folds[1];
+        }
+
+        return result;
+    };
+
+
+
+
     /**  Function that assigns or removes "card-flipped" class from a card-inner
      *
      * @param {object} card
@@ -119,6 +140,8 @@
                 console.log('Too many cards are flipped!');
         }
     };
+
+
 
 
 
@@ -216,23 +239,7 @@ const gameVariants = {
 let differentCards = Object.keys(gameVariants)[0];
 
 let cardsSlised = originalCards.slice(0, differentCards).concat(originalCards.slice(0, differentCards));
-let cardsShuffled = shuffle(cardsSlised);   
-console.log(cardsShuffled);
-
-const foldCards = (array, folds) => {
-    let result = [];
-    let sliceStart = 0;
-
-    for (let i = 0; i < folds[0]; i++) {
-        result.push(array.slice(sliceStart, sliceStart + folds[1]));
-        sliceStart += folds[1];
-    }
-
-    return result;
-};
-
-let playCards = foldCards(cardsShuffled, gameVariants[differentCards])
-
-console.log(playCards);
+let cardsShuffled = shuffle(cardsSlised);
+let playCards = foldCards(cardsShuffled, gameVariants[differentCards]);
 
 createCards(playCards);
