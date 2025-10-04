@@ -42,7 +42,7 @@
         let column = Number(card.classList[2].charAt(card.classList[2].length - 1));
 
         // Here goes the code to callback the game
-        console.log(playCards[row][column]);
+        console.log(playCards[row][column].src);
     }
 
 
@@ -90,7 +90,7 @@
 
                 cardFront = document.createElement('img');
                 cardFront.classList.add('card-front');
-                cardFront.src = array[i][j];
+                cardFront.src = array[i][j].src;
                 cardInner.appendChild(cardFront);
             }
 
@@ -109,26 +109,25 @@
  */ 
 
 
-
 const originalCards = [
-    'Images/01-Rose.png',
-    'Images/02-Tower.png',
-    'Images/03-Revolver.png',
-    'Images/04-Door.png',
-    'Images/05-Key.png',
-    'Images/06-Book.png',
-    'Images/07-Crystal.png',
-    'Images/08-Wheel.png',
-    'Images/09-Train.png',
-    'Images/10-Feather.png',
-    'Images/11-Crown.png',
-    'Images/12-Moon.png',
-    'Images/13-Wolf.png',
-    'Images/14-Horn.png',
-    'Images/15-Clock.png',
-    'Images/16-Crossroads.png',
-    'Images/17-Eye.png',
-    'Images/18-Chain.png',
+    { src: 'Images/01-Rose.png', state: 'back' },
+    { src: 'Images/02-Tower.png', state: 'back' },
+    { src: 'Images/03-Revolver.png', state: 'back' },
+    { src: 'Images/04-Door.png', state: 'back' },
+    { src: 'Images/05-Key.png', state: 'back' },
+    { src: 'Images/06-Book.png', state: 'back' },
+    { src: 'Images/07-Crystal.png', state: 'back' },
+    { src: 'Images/08-Wheel.png', state: 'back' },
+    { src: 'Images/09-Train.png', state: 'back' },
+    { src: 'Images/10-Feather.png', state: 'back' },
+    { src: 'Images/11-Crown.png', state: 'back' },
+    { src: 'Images/12-Moon.png', state: 'back' },
+    { src: 'Images/13-Wolf.png', state: 'back' },
+    { src: 'Images/14-Horn.png', state: 'back' },
+    { src: 'Images/15-Clock.png', state: 'back' },
+    { src: 'Images/16-Crossroads.png', state: 'back' },
+    { src: 'Images/17-Eye.png', state: 'back' },
+    { src: 'Images/18-Chain.png', state: 'back' },
 ];
 
 //const gameVariants = {6, 8, 10, 12, 14, 15, 18};
