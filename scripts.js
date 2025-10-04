@@ -203,6 +203,20 @@
         }
     };
 
+
+    const setupGame = (selectedVariant) => {
+        flippedCards = [];
+        guessedCounter = 0;
+        movesMade = 0;
+
+        differentCards = Object.keys(gameVariants)[selectedVariant];
+
+        let cardsSlised = originalCards.slice(0, differentCards).concat(originalCards.slice(0, differentCards));
+        let cardsShuffled = shuffle(cardsSlised);
+        let playCards = foldCards(cardsShuffled, gameVariants[differentCards]);
+        createCards(playCards);
+    };
+
 // #endregion FUNCTIONS
 
 
@@ -246,6 +260,7 @@ const gameVariants = {
     18: [6, 6]
 };
 
+let selectedVariant = 0;
 let differentCards;      // How many card pairs are there in game
 let flippedCards = [];   // Array to store cards that are flipped at the moment
 let guessedCounter = 0;  // How many pairs are guessed - used to determine win condition
@@ -254,7 +269,10 @@ let movesMade = 0;
 
 const dialogWindow = document.querySelector('dialog.win-dialog');
 const playAgainButton = document.querySelector('.win-dialog.play-again');
-playAgainButton.addEventListener('click', () => {});
+playAgainButton.addEventListener('click', () => {
+    dialogWindow.close();
+    setupGame(selectedVariant);
+});
 const playToMenu = document.querySelector('.win-dialog.to-menu');
 
 
@@ -262,3 +280,6 @@ const playToMenu = document.querySelector('.win-dialog.to-menu');
 
 
 
+window.addEventListener('load', () => {
+    setupGame(selectedVariant);
+});
