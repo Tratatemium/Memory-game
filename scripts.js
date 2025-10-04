@@ -30,23 +30,37 @@
         return result;
     };
 
+
+    const flipCard = (card) => {
+        if (Array.from(card.children[0].classList).includes('card-flipped')) {
+            card.children[0].classList.remove('card-flipped');
+        } else {
+            card.children[0].classList.add('card-flipped');
+        }
+    };
+
+
+
     let flippedCards = [];
     let guessedCounter = 0;
+    let flippedTimeout;
 
     const onCardClick = (event) => {
+
+        console.log('click! ' + flippedCards);        
 
         // Get the element (card) that has been clicked
         let card = event.currentTarget;
 
         switch (flippedCards.length) {
             case 0:
-                card.children[0].classList.add('card-flipped');
+                flipCard(card);
                 flippedCards.push(card);
                 break;
             case 1:
                 if (card !== flippedCards[0]) {
 
-                    card.children[0].classList.add('card-flipped');
+                    flipCard(card);
                     flippedCards.push(card);
 
                     if (flippedCards[0].children[0].children[1].src === flippedCards[1].children[0].children[1].src) {
@@ -62,20 +76,25 @@
                                 console.log('You won!');
                             }
 
-                        }, 1000);                        
+                        }, 700);                        
 
                     } else {
-                        setTimeout(() => {
-                            flippedCards[0].children[0].classList.remove('card-flipped');
-                            flippedCards[1].children[0].classList.remove('card-flipped');
+                        flippedTimeout = setTimeout(() => {
+                            flipCard(flippedCards[0]);
+                            flipCard(flippedCards[1]);
                             flippedCards = [];
-                        }, 2000);
+                        }, 3500);
                     }                    
                 }
                 break;
             case 2:
-                if ((card !== flippedCards[0]) && (card !== flippedCards[1])) {
-
+                if ((card !== flippedCards[0]) && (card !== flippedCards[1]) && (flippedCards[0].children[0].children[1].src !== flippedCards[1].children[0].children[1].src)) {
+                    clearTimeout(flippedTimeout);
+                    flipCard(flippedCards[0]);
+                    flipCard(flippedCards[1]);
+                    flippedCards = [];
+                    flipCard(card);
+                    flippedCards.push(card);
                 }
                 break;
             default:
