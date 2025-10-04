@@ -30,43 +30,57 @@
         return result;
     };
 
-
-
-    const flipCard = (card) => {
-        switch (arrayCard.state) {
-            case 'back':
-                card.children[0].classList.add('card-flipped');
-                arrayCard.state = 'front';
-                break;
-            case 'front':
-                card.children[0].classList.remove('card-flipped');
-                arrayCard.state = 'back';
-                break;
-            default:
-                console.log('Mistake in arrayCard.state!')
-        }
-    };
-
-
+    let flippedCards = [];
+    let guessedCounter = 0;
 
     const onCardClick = (event) => {
 
         // Get the element (card) that has been clicked
         let card = event.currentTarget;
 
-        // From assingned classes ".row#" ".column#" get position of the clicked card
-        let row =  Number(card.classList[1].charAt(card.classList[1].length - 1));
-        let column = Number(card.classList[2].charAt(card.classList[2].length - 1));
+        switch (flippedCards.length) {
+            case 0:
+                card.children[0].classList.add('card-flipped');
+                flippedCards.push(card);
+                break;
+            case 1:
+                if (card !== flippedCards[0]) {
 
-        // This is corresponding object in initial array 
-        let arrayCard = playCards[row][column];
-        
-        // Here goes the code to callback the game
-        console.log(arrayCard.src);
-        console.log(card.children[0]);
+                    card.children[0].classList.add('card-flipped');
+                    flippedCards.push(card);
 
-        card.classList.add('card-invisible');
-        arrayCard.state = 'invisible'
+                    if (flippedCards[0].children[0].children[1].src === flippedCards[1].children[0].children[1].src) {
+
+                        setTimeout(() => {
+                            flippedCards[0].classList.add('card-invisible');
+                            flippedCards[1].classList.add('card-invisible');
+                            flippedCards = [];
+
+                            guessedCounter += 1;
+
+                            if (guessedCounter === differentCards) {
+                                console.log('You won!');
+                            }
+
+                        }, 1000);                        
+
+                    } else {
+                        setTimeout(() => {
+                            flippedCards[0].children[0].classList.remove('card-flipped');
+                            flippedCards[1].children[0].classList.remove('card-flipped');
+                            flippedCards = [];
+                        }, 2000);
+                    }                    
+                }
+                break;
+            case 2:
+                if ((card !== flippedCards[0]) && (card !== flippedCards[1])) {
+
+                }
+                break;
+            default:
+                console.log('Too many cards are flipped!');
+        }
     };
 
 
@@ -114,7 +128,7 @@
 
                 cardFront = document.createElement('img');
                 cardFront.classList.add('card-front');
-                cardFront.src = array[i][j].src;
+                cardFront.src = array[i][j];
                 cardInner.appendChild(cardFront);
             }
 
@@ -134,29 +148,31 @@
 
 
 const originalCards = [
-    { src: 'Images/01-Rose.png', state: 'back' },
-    { src: 'Images/02-Tower.png', state: 'back' },
-    { src: 'Images/03-Revolver.png', state: 'back' },
-    { src: 'Images/04-Door.png', state: 'back' },
-    { src: 'Images/05-Key.png', state: 'back' },
-    { src: 'Images/06-Book.png', state: 'back' },
-    { src: 'Images/07-Crystal.png', state: 'back' },
-    { src: 'Images/08-Wheel.png', state: 'back' },
-    { src: 'Images/09-Train.png', state: 'back' },
-    { src: 'Images/10-Feather.png', state: 'back' },
-    { src: 'Images/11-Crown.png', state: 'back' },
-    { src: 'Images/12-Moon.png', state: 'back' },
-    { src: 'Images/13-Wolf.png', state: 'back' },
-    { src: 'Images/14-Horn.png', state: 'back' },
-    { src: 'Images/15-Clock.png', state: 'back' },
-    { src: 'Images/16-Crossroads.png', state: 'back' },
-    { src: 'Images/17-Eye.png', state: 'back' },
-    { src: 'Images/18-Chain.png', state: 'back' },
+    'Images/01-Rose.png',
+    'Images/02-Tower.png',
+    'Images/03-Revolver.png',
+    'Images/04-Door.png',
+    'Images/05-Key.png',
+    'Images/06-Book.png',
+    'Images/07-Crystal.png',
+    'Images/08-Wheel.png',
+    'Images/09-Train.png',
+    'Images/10-Feather.png',
+    'Images/11-Crown.png',
+    'Images/12-Moon.png',
+    'Images/13-Wolf.png',
+    'Images/14-Horn.png',
+    'Images/15-Clock.png',
+    'Images/16-Crossroads.png',
+    'Images/17-Eye.png',
+    'Images/18-Chain.png',
 ];
 
-//const gameVariants = {6, 8, 10, 12, 14, 15, 18};
+//const gameVariants = [6, 8, 10, 12, 14, 15, 18];
 
-let cardsSlised = originalCards.slice(0, 8).concat(originalCards.slice(0, 8));
+let differentCards = 8;
+
+let cardsSlised = originalCards.slice(0, differentCards).concat(originalCards.slice(0, differentCards));
 let cardsShuffled = shuffle(cardsSlised);
 console.log(cardsShuffled);
 
