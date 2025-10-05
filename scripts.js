@@ -282,10 +282,10 @@ const playToMenu = document.querySelector('.win-dialog.to-menu');
 
 
 
-window.addEventListener('load', () => {
-    setupGame(selectedVariant);
-});
+// window.addEventListener('load', () => {
+//     setupGame(selectedVariant);
+// });
 
 
-dialogWindow.showModal();
-dialogWindow.querySelectorAll('button').forEach(btn => btn.blur());
+// dialogWindow.showModal();
+// dialogWindow.querySelectorAll('button').forEach(btn => btn.blur());
