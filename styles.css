@@ -210,128 +210,136 @@
 
 
 
+/* ==================================================
 
-dialog.win-dialog {
-  background: radial-gradient(circle at center, #1c1b15 0%, #13120c 80%);
-  border: 3px solid #cc944c;
-  border-radius: 16px;
-  color: #e8dcb5;
-  font-family: 'Cinzel', 'Garamond', serif;
-  text-align: center;
-  padding: 2rem;
-  width: min(90%, 400px);
-  box-shadow: 0 0 20px #cc944c44, 0 0 60px #000 inset;
-  animation: fadeInScale 0.8s ease forwards;
-  backdrop-filter: blur(6px);
-  background-clip: padding-box;
-  width: 40vw;
-}
+   *****             WIN DIALOG                 *****
 
-/* Dialog overlay (if you use <dialog open>) */
-::backdrop {
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(3px);
-}
+   ================================================== */
+/* #region WIN DIALOG */
 
-/* Headline */
-.win-dialog.win-p {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  text-shadow: 0 0 5px #cc944c, 0 0 10px #cc944c99, 0 0 20px #cc944c33;
-  letter-spacing: 1px;
-}
-
-p.win-dialog{
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  color: #cc944c;
-  text-shadow: 0 0 10px #cc944c66, 0 0 20px #cc944c33;
-}
-
-
-/* Moves text */
-.win-dialog.moves {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
-  text-shadow: 0 0 10px #cc944c99, 0 0 20px #cc944c33;
-}
-
-.ornament{
-  color: #cc944c;
-  display: flex;
-  flex-direction: row;
-  margin: 2rem auto 2rem auto;
-  align-items: center;
-  width: fit-content;
-  gap: 1rem;
-}
-
-.gradient {
-  height: 2px;
-  width: 8rem;
-}
-
-.transparent-to-gold {
-  background: linear-gradient(135deg, transparent, #cc944c);
-}
-
-.gold-to-transparent {
-  background: linear-gradient(135deg, #cc944c, transparent);
-}
-
-.svg.star{
-  width: 1rem;
-  height: auto;
-}
-
-.win-dialog.buttons{
-  display: flex;
-  flex-direction: row;
-  margin: 2rem auto 2rem auto;
-  align-items: center;
-  width: fit-content;
-}
-
-/* Buttons */
-.win-dialog button {
-  display: inline-block;
-  width: 10em;
-  margin: 0.4rem;
-  padding: 0.6rem 1.4rem;
-  border: 1.5px solid #cc944c;
-  border-radius: 10px;
-  background: transparent;
-  color: #cc944c;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 12px #cc944c99, 0 0 24px #cc944c44;
-}
-
-.win-dialog button:hover {
-  background: #cc944c;
-  color: #13120c;
-  transform: scale(1.03);
-}
-
-.svg.rotate-right,
-.svg.house{
-  height: .8rem;
-  width: auto;
-}
-
-/* Animation for appearance */
-@keyframes fadeInScale {
-  0% {
-    opacity: 0;
-    transform: scale(0.9);
+  dialog.win-dialog {
+    background: radial-gradient(circle at center, #1c1b15 0%, #13120c 80%);
+    border: 3px solid #cc944c;
+    border-radius: 16px;
+    color: #e8dcb5;
+    font-family: 'Cinzel', 'Garamond', serif;
+    text-align: center;
+    padding: 2rem;
+    width: min(90%, 400px);
+    box-shadow: 0 0 20px #cc944c44, 0 0 60px #000 inset;
+    animation: fadeInScale 0.8s ease forwards;
+    backdrop-filter: blur(6px);
+    background-clip: padding-box;
+    width: 40vw;
   }
-  100% {
-    opacity: 1;
-    transform: scale(1);
+
+  /* Dialog overlay (if you use <dialog open>) */
+  ::backdrop {
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(3px);
   }
-}
+
+  /* Headline */
+  .win-dialog.win-p {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 5px #cc944c, 0 0 10px #cc944c99, 0 0 20px #cc944c33;
+    letter-spacing: 1px;
+  }
+
+  p.win-dialog{
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #cc944c;
+    text-shadow: 0 0 10px #cc944c66, 0 0 20px #cc944c33;
+  }
+
+
+  /* Moves text */
+  .win-dialog.moves {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 10px #cc944c99, 0 0 20px #cc944c33;
+  }
+
+  .ornament{
+    color: #cc944c;
+    display: flex;
+    flex-direction: row;
+    margin: 2rem auto 2rem auto;
+    align-items: center;
+    width: fit-content;
+    gap: 1rem;
+  }
+
+  .gradient {
+    height: 2px;
+    width: 8rem;
+  }
+
+  .transparent-to-gold {
+    background: linear-gradient(135deg, transparent, #cc944c);
+  }
+
+  .gold-to-transparent {
+    background: linear-gradient(135deg, #cc944c, transparent);
+  }
+
+  .svg.star{
+    width: 1rem;
+    height: auto;
+  }
+
+  .win-dialog.buttons{
+    display: flex;
+    flex-direction: row;
+    margin: 2rem auto 2rem auto;
+    align-items: center;
+    width: fit-content;
+  }
+
+  /* Buttons */
+  .win-dialog button {
+    display: inline-block;
+    width: 10em;
+    margin: 0.4rem;
+    padding: 0.6rem 1.4rem;
+    border: 1.5px solid #cc944c;
+    border-radius: 10px;
+    background: transparent;
+    color: #cc944c;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 12px #cc944c99, 0 0 24px #cc944c44;
+  }
+
+  .win-dialog button:hover {
+    background: #cc944c;
+    color: #13120c;
+    transform: scale(1.03);
+  }
+
+  .svg.rotate-right,
+  .svg.house{
+    height: .8rem;
+    width: auto;
+  }
+
+  /* Animation for appearance */
+  @keyframes fadeInScale {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+/* #endregion WIN DIALOG */
