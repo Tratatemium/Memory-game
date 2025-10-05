@@ -110,14 +110,67 @@
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.2);
+    z-index: -1;
   }
 
   .main{
     width: 100vw;
   }
 
+  .hidden{
+    display: none;
+  }
+
 /* #endregion BODY */
 
+
+/* ==================================================
+
+   *****                 MENU                   *****
+
+   ================================================== */
+/* #region MENU */
+
+  .menu{
+    color: var(--color-main);
+    font-family: 'Cinzel', 'Garamond', serif;
+  }
+
+  .menu.container{
+
+  }
+
+  .menu.buttons-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  button.menu {
+    display: inline-block;
+    width: 15rem;
+    margin: 0.4rem;
+    padding: 0.6rem 1.4rem;
+    border: 1.5px solid var(--color-main);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--color-main);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 12px #cc944c99, 0 0 24px #cc944c44;
+  }
+    
+  button.menu:hover {
+    background: var(--color-main);
+    color: #13120c;
+    transform: scale(1.03);
+  }
+
+/* #endregion MENU */
 
 
 /* ==================================================
@@ -219,7 +272,7 @@
 
   dialog.win-dialog {
     background: radial-gradient(circle at center, #1c1b15 0%, #13120c 80%);
-    border: 3px solid #cc944c;
+    border: 3px solid var(--color-main);
     border-radius: 16px;
     color: #e8dcb5;
     font-family: 'Cinzel', 'Garamond', serif;
@@ -244,14 +297,14 @@
     font-size: 3rem;
     font-weight: bold;
     margin-bottom: 2rem;
-    text-shadow: 0 0 5px #cc944c, 0 0 10px #cc944c99, 0 0 20px #cc944c33;
+    text-shadow: 0 0 5px var(--color-main), 0 0 10px #cc944c99, 0 0 20px #cc944c33;
     letter-spacing: 1px;
   }
 
   p.win-dialog{
     font-size: 1rem;
     margin-bottom: 0.5rem;
-    color: #cc944c;
+    color: var(--color-main);
     text-shadow: 0 0 10px #cc944c66, 0 0 20px #cc944c33;
   }
 
@@ -265,7 +318,7 @@
   }
 
   .ornament{
-    color: #cc944c;
+    color: var(--color-main);
     display: flex;
     flex-direction: row;
     margin: 2rem auto 2rem auto;
@@ -280,11 +333,11 @@
   }
 
   .transparent-to-gold {
-    background: linear-gradient(135deg, transparent, #cc944c);
+    background: linear-gradient(135deg, transparent, var(--color-main));
   }
 
   .gold-to-transparent {
-    background: linear-gradient(135deg, #cc944c, transparent);
+    background: linear-gradient(135deg, var(--color-main), transparent);
   }
 
   .svg.star{
@@ -306,10 +359,10 @@
     width: 10em;
     margin: 0.4rem;
     padding: 0.6rem 1.4rem;
-    border: 1.5px solid #cc944c;
+    border: 1.5px solid var(--color-main);
     border-radius: 10px;
     background: transparent;
-    color: #cc944c;
+    color: var(--color-main);
     font-family: inherit;
     font-size: 1rem;
     font-weight: bold;
@@ -317,9 +370,10 @@
     transition: all 0.3s ease;
     box-shadow: 0 0 12px #cc944c99, 0 0 24px #cc944c44;
   }
+  
 
   .win-dialog button:hover {
-    background: #cc944c;
+    background: var(--color-main);
     color: #13120c;
     transform: scale(1.03);
   }

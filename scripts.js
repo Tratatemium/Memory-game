@@ -269,16 +269,32 @@ let guessedCounter = 0;  // How many pairs are guessed - used to determine win c
 let flippedTimeout;      // Timer for two flipped cards
 let movesMade = 0;
 
+let gameVariantButton;
+for (let i = 0; i < 7; i++) {
+    gameVariantButton = document.getElementById(i);
+    gameVariantButton.addEventListener('click', (event) => {
+        selectedVariant = Number(event.target.id);
+        const menuContainer = document.querySelector('.menu.container');
+        menuContainer.classList.add('hidden');
+        setupGame(selectedVariant);
+    });
+}
+
+
 const dialogWindow = document.querySelector('dialog.win-dialog');
 const playAgainButton = document.querySelector('.win-dialog.play-again');
 playAgainButton.addEventListener('click', () => {
     dialogWindow.close();
     setupGame(selectedVariant);
 });
-const playToMenu = document.querySelector('.win-dialog.to-menu');
-
-
-
+const toMenuButton = document.querySelector('.win-dialog.to-menu');
+toMenuButton.addEventListener('click', () => {
+    dialogWindow.close();
+    const cardField = document.getElementById('card-field');
+    cardField.innerHTML = '';   // Clear the playing field
+    const menuContainer = document.querySelector('.menu.container');
+    menuContainer.classList.remove('hidden');
+});
 
 
 
