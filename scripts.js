@@ -101,6 +101,8 @@
                 if (card !== flippedCards[0]) {
 
                     movesMade += 1;
+                    const gameInfoMoves = document.querySelector('.game-info.moves');
+                    gameInfoMoves.textContent = `${movesMade} moves`;
 
                     flipCard(card);
                     flippedCards.push(card);

@@ -90,6 +90,7 @@
 /* #region BODY */
 
   body {
+    color: var(--color-main);
     background-color: #13120c;
     background-image: url('Images/Background-04.png');
 
@@ -117,11 +118,10 @@
 
   main{
     width: 100%;
-    height: fit-content;
+    height: 100%;
     margin: auto;
-  }
-
-  
+    /* position: relative; */
+  }  
 
   footer{
     margin-top: auto;
@@ -170,9 +170,7 @@
     justify-content: center;
   }
 
-  .container.hidden{
-    display: none;
-  }
+  
 
   .menu.header{
     font-size: 3rem;
@@ -225,6 +223,10 @@
 /* #region CARDS */
 
   #card-field {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -329,6 +331,68 @@
 /* #endregion CARDS */
 
 
+/* ==================================================
+
+   *****              GAME INFO                 *****
+
+   ================================================== */
+/* #region GAME INFO */
+
+  .game-info.container{
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+
+    font-family: 'Cinzel', 'Garamond', serif;
+    color: var(--color-main);
+
+
+
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    text-align: center;
+  }
+
+  p.game-info{
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-main);
+    text-shadow: 0 0 10px #cc944c66, 0 0 20px #cc944c33;
+  }
+
+  /* Buttons */
+  button.game-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.2rem;
+    text-align: center;
+    width: 6rem;
+    margin: 0.4rem;
+    padding: 0.6rem 0.8rem;
+    border: 1.5px solid var(--color-main);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--color-main);
+    font-family: inherit;
+    font-size: .7rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px #cc944c99, 0 0 16px #cc944c44;
+  }
+  
+  button.game-info:hover {
+    background: var(--color-main);
+    color: #13120c;
+    transform: scale(1.03);
+  }
+
+
+/* #endregion GAME INFO */
+
+
 
 /* ==================================================
 
@@ -407,12 +471,12 @@
     background: linear-gradient(135deg, var(--color-main), transparent);
   }
 
-  .svg.star{
+  .svg.star {
     width: 1rem;
     height: auto;
   }
 
-  .win-dialog.buttons{
+  .win-dialog.buttons {
     display: flex;
     flex-direction: row;
     margin: 2rem auto 2rem auto;
@@ -421,7 +485,7 @@
   }
 
   /* Buttons */
-  .win-dialog button {
+  button.win-dialog {
     display: inline-block;
     width: 10em;
     margin: 0.4rem;
@@ -439,7 +503,7 @@
   }
   
 
-  .win-dialog button:hover {
+  button.win-dialog:hover {
     background: var(--color-main);
     color: #13120c;
     transform: scale(1.03);
@@ -464,3 +528,8 @@
   }
 
 /* #endregion WIN DIALOG */
+
+
+.container.hidden{
+    display: none;
+  }
