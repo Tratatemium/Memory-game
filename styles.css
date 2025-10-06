@@ -115,13 +115,13 @@
     z-index: -1;
   }
 
-  .main{
+  main{
     width: 100%;
+    height: fit-content;
+    margin: auto;
   }
 
-  .hidden{
-    display: none;
-  }
+  
 
   footer{
     margin-top: auto;
@@ -171,6 +171,10 @@
     justify-content: center;
   }
 
+  .menu.container.hidden{
+    display: none;
+  }
+
   .menu.header{
     margin: 3rem auto 3rem auto;
   }
@@ -179,6 +183,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 2rem;
   }
 
   .menu.buttons-container h2{
