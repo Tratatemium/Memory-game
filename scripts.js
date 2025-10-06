@@ -182,10 +182,14 @@
             for (let j = 0; j < array[i].length; j++){
                 card = document.createElement('div');   // Create card 
                 card.classList.add('card');
-
-                card.addEventListener('click', onCardClick); // Add event listner to card
+                card.addEventListener('click', onCardClick); // Add event listener to card
                 
                 row.appendChild(card);
+
+                // Add animation end listener after card is in DOM
+                card.addEventListener('animationend', function() {
+                    this.classList.add('animated');
+                });
 
                 cardInner = document.createElement('div'); // Create card-inner
                 cardInner.classList.add('card-inner');
@@ -217,6 +221,11 @@
         let cardsShuffled = shuffle(cardsSlised);
         let playCards = foldCards(cardsShuffled, gameVariants[differentCards]);
         createCards(playCards);
+
+        const gameInfoContainer = document.querySelector('.game-info.container');
+        gameInfoContainer.classList.remove('hidden');
+        const gameInfoMoves = document.querySelector('.game-info.moves');
+        gameInfoMoves.textContent = "0 moves";
     };
 
 // #endregion FUNCTIONS
@@ -282,19 +291,23 @@ for (let i = 0; i < 7; i++) {
 
 
 const dialogWindow = document.querySelector('dialog.win-dialog');
-const playAgainButton = document.querySelector('.win-dialog.play-again');
-playAgainButton.addEventListener('click', () => {
+
+const playAgainButtons = document.querySelectorAll('.play-again');
+playAgainButtons.forEach(button => button.addEventListener('click', () => {
     dialogWindow.close();
     setupGame(selectedVariant);
-});
-const toMenuButton = document.querySelector('.win-dialog.to-menu');
-toMenuButton.addEventListener('click', () => {
+}));
+
+const toMenuButtons = document.querySelectorAll('.to-menu');
+toMenuButtons.forEach(button => button.addEventListener('click', () => {
     dialogWindow.close();
     const cardField = document.getElementById('card-field');
     cardField.innerHTML = '';   // Clear the playing field
     const menuContainer = document.querySelector('.menu.container');
     menuContainer.classList.remove('hidden');
-});
+    const gameInfoContainer = document.querySelector('.game-info.container');
+    gameInfoContainer.classList.add('hidden');
+}));
 
 
 
