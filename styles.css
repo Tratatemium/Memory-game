@@ -79,6 +79,7 @@
 :root{
     --color-background: #13120c;
     --color-main: #cc944c;
+    --color-highligt: #e4bc72;
 }
 
 /* ==================================================
@@ -100,6 +101,7 @@
     min-height: 100vh; 
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
@@ -119,6 +121,31 @@
 
   .hidden{
     display: none;
+  }
+
+  footer{
+    margin-top: auto;
+    margin-bottom: 0;
+    width: 100%;
+    color: var(--color-main);
+    display: flex;
+    flex-direction: row;
+  }
+
+  .copyright{
+    font-size: .8rem;
+    margin: auto;
+  }
+
+  .about-me-link{
+    text-decoration: none;
+    color: var(--color-main);
+    cursor: pointer;
+  }
+
+  .about-me-link:hover{
+    color: var(--color-highligt);
+    text-shadow: 0 0 2px var(--color-main);
   }
 
 /* #endregion BODY */
@@ -225,11 +252,11 @@
   }
 
   .card-front {
-    transform: rotateY(180deg);
+    transform: rotateY(0deg);
   }
 
   .card-back {
-    transform: rotateY(0deg);
+    transform: rotateY(180deg);
   }
 
   .card-inner.card-flipped{
