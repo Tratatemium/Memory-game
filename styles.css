@@ -116,7 +116,7 @@
   }
 
   .main{
-    width: 100vw;
+    width: 100%;
   }
 
   .hidden{
@@ -161,16 +161,28 @@
   .menu{
     color: var(--color-main);
     font-family: 'Cinzel', 'Garamond', serif;
+    
   }
 
   .menu.container{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
+  .menu.header{
+    margin: 3rem auto 3rem auto;
   }
 
   .menu.buttons-container{
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .menu.buttons-container h2{
+    margin-bottom: 1rem;
   }
 
 
