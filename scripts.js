@@ -68,6 +68,11 @@
     };
 
 
+    /**
+     * Handles the win condition by displaying the win dialog and updating moves.
+     *
+     * @param {number} movesMade - Number of moves taken to win.
+     */
     const onWin = (movesMade) => {
 
         const movesParagraph = document.querySelector('.win-dialog.moves')
@@ -211,6 +216,11 @@
     };
 
 
+    /**
+     * Sets up the game board and state for the selected difficulty variant.
+     *
+     * @param {number} selectedVariant - Index of the chosen difficulty.
+     */
     const setupGame = (selectedVariant) => {
         flippedCards = [];
         guessedCounter = 0;
@@ -310,13 +320,3 @@ toMenuButtons.forEach(button => button.addEventListener('click', () => {
     const gameInfoContainer = document.querySelector('.game-info.container');
     gameInfoContainer.classList.add('hidden');
 }));
-
-
-
-// window.addEventListener('load', () => {
-//     setupGame(selectedVariant);
-// });
-
-
-// dialogWindow.showModal();
-// dialogWindow.querySelectorAll('button').forEach(btn => btn.blur());
