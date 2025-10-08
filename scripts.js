@@ -320,3 +320,5 @@ toMenuButtons.forEach(button => button.addEventListener('click', () => {
     const gameInfoContainer = document.querySelector('.game-info.container');
     gameInfoContainer.classList.add('hidden');
 }));
+
+// *
